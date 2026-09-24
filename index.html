@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MONTI TURÍSTICO - Explora lo mejor de Montes</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -25,67 +27,120 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--light-bg);
             color: var(--dark-color);
             line-height: 1.6;
         }
 
+        /* Hero / Seccion de Bienvenida Principal */
         .hero {
+            min-height: 85vh;
             background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), 
                         url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 90px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero-container {
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 18px;
             color: #5eead4;
             text-transform: uppercase;
             letter-spacing: 1px;
+            line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.25rem;
-            max-width: 750px;
-            margin: 0 auto;
+            margin-bottom: 35px;
             font-weight: 300;
+            color: #e2e8f0;
         }
 
+        /* Boton Principal de Explorar */
+        .btn-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-hero:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(13, 148, 136, 0.7);
+        }
+
+        /* Contenedor Principal */
         .container {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 70px auto;
             padding: 0 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 35px;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
             color: var(--dark-color);
             position: relative;
         }
 
         .section-title::after {
             content: '';
-            width: 70px;
+            width: 80px;
             height: 4px;
             background-color: var(--primary-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 12px auto 0;
             border-radius: 2px;
         }
 
+        /* Grid de Destinos */
         .destinos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 25px;
         }
 
+        /* Tarjeta */
         .card {
             background: var(--white);
             border-radius: 16px;
@@ -172,13 +227,14 @@
             background-color: var(--primary-hover);
         }
 
+        /* Modal / Ventana Emergente */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(15, 23, 42, 0.75);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -282,24 +338,34 @@
         }
 
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.2rem; }
             .hero p { font-size: 1rem; }
+            .btn-hero { padding: 14px 28px; font-size: 1rem; }
             .modal-body { padding: 18px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Bienvenida Inicial con Botón Explorar -->
     <header class="hero">
-        <h1>MONTI TURÍSTICO</h1>
-        <p>Explora lo mejor de Montes: Tu guía definitiva para descubrir la magia, la cultura, los ríos y los senderos naturales de nuestro municipio.</p>
+        <div class="hero-container">
+            <span class="hero-badge"><i class="fa-solid fa-map-location-dot"></i> Guía Turística Oficial</span>
+            <h1>MONTI TURÍSTICO</h1>
+            <p>Explora lo mejor de Montes: Tu guía definitiva para descubrir la magia, la cultura, los ríos y los senderos naturales de nuestro municipio.</p>
+            <a href="#destinos" class="btn-hero">
+                Explorar Destinos <i class="fa-solid fa-arrow-down"></i>
+            </a>
+        </div>
     </header>
 
-    <main class="container">
+    <!-- Contenido Principal (Sección de Destinos) -->
+    <main class="container" id="destinos">
         <h2 class="section-title">Destinos Turísticos Imperdibles</h2>
         <div class="destinos-grid" id="destinosGrid"></div>
     </main>
 
+    <!-- Modal / Ventana Emergente -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
             <button class="close-btn" id="closeBtn">&times;</button>
