@@ -1,367 +1,493 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guía Turística - Explora Tu Próxima Aventura</title>
-    <!-- Tailwind CSS desde CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome para iconos -->
+    <title>MONTI TURÍSTICO - Explora lo mejor de Montes</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Inter + Montserrat) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdfa',
-                            100: '#ccfbf1',
-                            500: '#14b8a6',
-                            600: '#0d9488',
-                            700: '#0f766e',
-                            800: '#115e59',
-                            900: '#134e4a',
-                        },
-                        ocean: {
-                            500: '#0284c7',
-                            600: '#0369a1',
-                            700: '#075985',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    
     <style>
+        :root {
+            --primary-color: #0d9488;
+            --primary-hover: #0f766e;
+            --secondary-color: #f59e0b;
+            --dark-color: #1e293b;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            line-height: 1.6;
         }
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
+
+        /* Hero Section / Bienvenida */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 90px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
-        .glass-card {
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #5eead4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 750px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 35px;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-color);
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Grid de 4 Cuadritos */
+        .destinos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 25px;
+        }
+
+        /* Tarjeta de Destino */
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.08);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 22px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card-description {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-card {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-card:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Modal / Ventana Flotante */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            border-radius: 20px;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
             background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-color);
+            transition: background 0.2s;
         }
-        .hero-bg {
-            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.4)), 
-                              url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
+
+        .close-btn:hover {
+            background: var(--white);
         }
-        /* Animación suave para el Modal */
-        .modal-active {
-            display: flex !important;
-            animation: fadeIn 0.25s ease-out forwards;
+
+        .modal-body {
+            padding: 25px;
         }
-        .modal-active .modal-content {
-            animation: slideUp 0.3s ease-out forwards;
+
+        .modal-title {
+            font-size: 1.6rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        .modal-info-block {
+            margin-bottom: 18px;
+            background: #f1f5f9;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px) scale(0.97); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+
+        .modal-info-block h4 {
+            color: var(--primary-hover);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05rem;
+        }
+
+        .modal-info-block p {
+            color: #334155;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            background: #0f172a;
+            color: #94a3b8;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsivo */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .modal-body { padding: 18px; }
         }
     </style>
 </head>
-<body class="text-slate-800 flex flex-col min-h-screen">
+<body>
 
-    <!-- Navbar -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-ocean-500 flex items-center justify-center text-white shadow-md">
-                    <i class="fa-solid fa-compass text-xl"></i>
-                </div>
-                <span class="font-heading font-extrabold text-xl bg-gradient-to-r from-brand-700 to-ocean-600 bg-clip-text text-transparent">
-                    MiGuíaTurística
-                </span>
-            </div>
-            <nav class="hidden md:flex items-center gap-6 font-medium text-slate-600 text-sm">
-                <a href="#inicio" class="hover:text-brand-600 transition-colors">Inicio</a>
-                <a href="#destinos" class="hover:text-brand-600 transition-colors">Destinos</a>
-                <a href="#nosotros" class="hover:text-brand-600 transition-colors">Acerca de</a>
-            </nav>
-            <a href="#destinos" class="bg-brand-600 hover:bg-brand-700 text-white font-medium px-4 py-2 rounded-xl text-sm transition-all shadow-sm hover:shadow-md">
-                Ver Destinos
-            </a>
-        </div>
+    <!-- Encabezado / Bienvenida -->
+    <header class="hero">
+        <h1>MONTI TURÍSTICO</h1>
+        <p>Explora lo mejor de Montes: Tu guía definitiva para descubrir la magia, la cultura, los ríos y los senderos naturales de nuestro municipio.</p>
     </header>
 
-    <!-- Hero / Bienvenida -->
-    <section id="inicio" class="hero-bg text-white py-24 lg:py-32 px-4 relative flex items-center justify-center">
-        <div class="max-w-4xl mx-auto text-center space-y-6">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-brand-500/30 backdrop-blur-md text-brand-100 font-semibold text-xs uppercase tracking-wider border border-brand-300/30 shadow-inner">
-                <i class="fa-solid fa-plane-departure mr-1.5"></i> Tu Próximo Viaje Comienza Aquí
-            </span>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                ¡Bienvenido a tu Guía Turística Personalizada!
-            </h1>
-            <p class="text-lg sm:text-xl text-slate-200 max-w-2xl mx-auto font-light leading-relaxed">
-                Selecciona cualquiera de nuestros destinos especiales a continuación para explorar detalles, recomendaciones, itinerarios y todo lo que verás en tu viaje.
-            </p>
-            <div class="pt-4">
-                <a href="#destinos" class="inline-flex items-center gap-2 bg-white text-brand-700 hover:bg-brand-50 font-bold px-7 py-3.5 rounded-2xl shadow-lg transition-all transform hover:-translate-y-0.5">
-                    <span>Explorar Destinos</span>
-                    <i class="fa-solid fa-arrow-down"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seccion de los 4 Destinos Turisticos -->
-    <main id="destinos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <h2 class="text-3xl font-bold text-slate-900 mb-3">Destinos Destacados</h2>
-            <p class="text-slate-600">Haz clic en el botón de cualquier destino para descubrir lo que te espera en esta fabulosa aventura.</p>
-        </div>
-
-        <!-- Grid de 4 tarjetas -->
-        <div id="grid-destinos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            <!-- Las tarjetas se generan dinámicamente con JS según los datos del usuario -->
+    <!-- Contenido Principal -->
+    <main class="container">
+        <h2 class="section-title">Destinos Turísticos Imperdibles</h2>
+        
+        <div class="destinos-grid" id="destinosGrid">
+            <!-- Las 4 tarjetas se autogeneran dinámicamente con JavaScript -->
         </div>
     </main>
 
-    <!-- Ventana Modal (Oculta por defecto) -->
-    <div id="modal-destino" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto items-center justify-center">
-        <!-- Contenido del Modal -->
-        <div class="modal-content bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden relative my-auto border border-slate-100">
-            <!-- Botón de Cerrar -->
-            <button id="btn-cerrar-modal" class="absolute top-4 right-4 z-10 w-10 h-10 bg-slate-900/40 hover:bg-slate-900/70 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-all shadow-md focus:outline-none">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
-            <!-- Encabezado con imagen en el modal -->
-            <div class="relative h-56 sm:h-64">
-                <img id="modal-img" src="" alt="Destino" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent"></div>
-                <div class="absolute bottom-5 left-6 right-6 text-white">
-                    <span id="modal-categoria" class="inline-block px-3 py-1 rounded-full bg-brand-500/80 backdrop-blur-sm text-xs font-semibold mb-2">
-                        Guía de Viaje
-                    </span>
-                    <h3 id="modal-titulo" class="text-2xl sm:text-3xl font-extrabold text-white"></h3>
-                </div>
-            </div>
-
-            <!-- Cuerpo del Modal (Mensaje e Información) -->
-            <div class="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto">
-                <!-- Mensaje de bienvenida del viaje -->
-                <div class="bg-brand-50/70 border-l-4 border-brand-500 p-4 rounded-r-2xl">
-                    <h4 class="text-sm font-bold text-brand-800 uppercase tracking-wide flex items-center gap-2 mb-1">
-                        <i class="fa-solid fa-comment-dots text-brand-600"></i> Mensaje del Guía
-                    </h4>
-                    <p id="modal-mensaje" class="text-slate-700 italic text-sm sm:text-base leading-relaxed"></p>
-                </div>
-
-                <!-- Qué vas a ver / Itinerario -->
-                <div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-route text-brand-600"></i> Lo que vas a vivir en este viaje
-                    </h4>
-                    <ul id="modal-actividades" class="space-y-2.5 text-slate-600 text-sm sm:text-base">
-                        <!-- Se insertan ítems de lista dinámicamente -->
-                    </ul>
-                </div>
-
-                <!-- Consejos adicionales -->
-                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm text-slate-500">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-clock text-brand-500"></i> Duración sugerida: 3-5 días</span>
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-brand-500"></i> Guía Certificado</span>
-                </div>
-            </div>
-
-            <!-- Pie del Modal -->
-            <div class="bg-slate-50 p-4 sm:px-8 flex justify-end border-t border-slate-100">
-                <button id="btn-entendido" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-2.5 rounded-xl text-sm transition-all shadow-sm">
-                    ¡Entendido, me interesa!
-                </button>
+    <!-- Modal / Ventana Emergente -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            <img src="" alt="Imagen Destino" class="modal-header-img" id="modalImg">
+            <div class="modal-body">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <div id="modalDetails"></div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer id="nosotros" class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-            <div class="flex items-center justify-center gap-2 text-white font-heading font-bold text-lg">
-                <i class="fa-solid fa-compass text-brand-500"></i> MiGuíaTurística
-            </div>
-            <p class="text-sm text-slate-500 max-w-md mx-auto">
-                Página web lista para personalizar tus mejores destinos turísticos y compartir tus guías.
-            </p>
-            <p class="text-xs text-slate-600 pt-4">
-                &copy; <span id="year"></span> Guía Turística. Diseñado para publicar en GitHub Pages.
-            </p>
-        </div>
+    <!-- Pie de Página -->
+    <footer>
+        <p>&copy; 2026 MONTI TURÍSTICO - Municipio Montes. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Lógica de Javascript y Datos Editables -->
+    <!-- Lógica de Interacción -->
     <script>
-        /* ========================================================================
-           AQUÍ PUEDES CAMBIAR TUS DESTINOS Y MENSAJES FACILMENTE.
-           Solo modifica los textos, títulos e imágenes dentro de este arreglo.
-           ======================================================================== */
+        // Datos de los 4 Destinos Turísticos
         const destinosTuristicos = [
             {
                 id: 1,
-                nombre: "Playa Paraíso & Arrecifes",
-                imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-                resumen: "Disfruta de aguas cristalinas, sol radiante y paseos en lancha.",
-                mensajeBienvenida: "¡Bienvenidos a la experiencia marina definitiva! En este viaje nos desconectaremos de la ciudad para sumergirnos en la tranquilidad del mar turquesa y conocer la vida silvestre submarina.",
-                actividades: [
-                    "Paseo en lancha guiado por la costa y calas escondidas.",
-                    "Sesión de snorkel con equipo incluido para ver corales y peces.",
-                    "Almuerzo típico playero frente al mar.",
-                    "Tiempo libre para relajación y fotografías de atardecer."
+                nombre: "Balneario Los Dos Ríos",
+                tag: "Tradicional",
+                imagen: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
+                resumen: "El Corazón Tradicional de Cumanacoa. El punto de encuentro por excelencia de locales y visitantes.",
+                detalles: [
+                    {
+                        titulo: "📍 Ubicación",
+                        texto: "A tan solo 10 minutos de Cumanacoa, siguiendo la vía hacia el estado Monagas."
+                    },
+                    {
+                        titulo: "🌿 Tradición y Alegría",
+                        texto: "Un sitio emblemático y famoso de toda la vida. Durante los fines de semana, días de vacaciones y temporadas como Semana Santa, Los Dos Ríos se convierte en el punto predilecto de encuentro para familias enteras y visitantes que vienen a disfrutar de la auténtica hospitalidad de la región."
+                    },
+                    {
+                        titulo: "💧 La Experiencia",
+                        texto: "Caracterizado por la confluencia de corrientes de agua cristalina y refrescante. Es el lugar ideal para un chapuzón revitalizante al aire libre y funciona como el punto estratégico perfecto para conectar con las rutas hacia Agua Blanca."
+                    }
                 ]
             },
             {
                 id: 2,
-                nombre: "Montaña & Bosque Nublado",
-                imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
-                resumen: "Senderismo, miradores increíbles y aire puro de la naturaleza.",
-                mensajeBienvenida: "¡Prepárate para respirar aire puro y renovar energías! Esta ruta de montaña está pensada para los amantes del trekking, la fotografía de paisajes y el senderismo al aire libre.",
-                actividades: [
-                    "Caminata ecológica por senderos boscosos de dificultad moderada.",
-                    "Visita a los 3 mejores miradores panóramicos de la región.",
-                    "Parada en cascada natural para picnic y descanso.",
-                    "Avistamiento de aves locales con guía especializado."
+                nombre: "Ruta Gastronómica",
+                tag: "Sabor y Cultura",
+                imagen: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+                resumen: "Un recorrido de sabor, cultura y tradición que comienza en el corazón de Cumanacoa.",
+                detalles: [
+                    {
+                        titulo: "📍 Punto de Partida",
+                        texto: "La aventura gastronómica inicia desde el bulevar en Cumanacoa (junto al emblemático monumento del bandolín morocho)."
+                    },
+                    {
+                        titulo: "👩‍🍳 Parada: Comunidad El Rincón",
+                        texto: "Disfruta de una mesa tradicional con dulces típicos y delicias locales como la representativa arepa de cambur."
+                    },
+                    {
+                        titulo: "🪵 Parada: Casa de la Sra. Antonia Quijada",
+                        texto: "Vive la experiencia de elaborar el casabe artesanal, desde prensar la yuca fresca hasta hornearlo directamente en el budare tradicional."
+                    }
                 ]
             },
             {
                 id: 3,
-                nombre: "Ciudad Histórica & Cultura",
-                imagen: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80",
-                resumen: "Calles empedradas, arquitectura colonial, museos y gastronomía.",
-                mensajeBienvenida: "¡Un viaje en el tiempo! Te damos la bienvenida a este recorrido cultural donde descubriremos la arquitectura colonial, los secretos mejor guardados del centro histórico y su exquisita gastronomía.",
-                actividades: [
-                    "Tour caminando por monumentos históricos y plazas principales.",
-                    "Entrada guiada a museos emblemáticos de la zona.",
-                    "Ruta gastronómica con degustación de platillos tradicionales.",
-                    "Taller interactivo con artesanos locales."
+                nombre: "Ruta Agrocomunitaria: Hacia la Cueva del Tigre",
+                tag: "Aventura MINTUR",
+                imagen: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
+                resumen: "Un sendero nacido del esfuerzo comunitario y el amor por nuestras montañas. Espacio virgen en contacto directo con la naturaleza.",
+                detalles: [
+                    {
+                        titulo: "📍 Ubicación",
+                        texto: "Comunidad El Maco, Berrat (Ruta oficial validada por el Ministerio del Poder Popular para el Turismo - MINTUR)."
+                    },
+                    {
+                        titulo: "⏱️ Duración de la Ruta",
+                        texto: "Aproximadamente 1 hora y media de caminata en medio de una vegetación exuberante."
+                    },
+                    {
+                        titulo: "🎒 La Experiencia",
+                        texto: "Un emocionante ascenso por un sendero de montaña que cuenta con múltiples pozas naturales ideales para un baño refrescante."
+                    },
+                    {
+                        titulo: "⛰️ El Gran Final",
+                        texto: "La llegada a la majestuosa Cueva del Tigre, donde el trabajo de la comunidad y la aventura se unen para un recuerdo inolvidable."
+                    }
                 ]
             },
             {
                 id: 4,
-                nombre: "Ruta de Aventura & Cascadas",
+                nombre: "Cataratas de Agua Blanca",
+                tag: "Exploración",
                 imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80",
-                resumen: "Emoción pura con deportes acuáticos, cañones y saltos de agua.",
-                mensajeBienvenida: "¡Hola, aventurero! Si te gusta la adrenalina y la aventura extrema, esta guía te llevará por cañones impresionantes, saltos de agua y aventuras inolvidables.",
-                actividades: [
-                    "Descenso guiado en cascadas (Canyoning seguro).",
-                    "Paseo en kayak por el río cristalino.",
-                    "Exploración de cueva natural con equipo de seguridad.",
-                    "Fogata nocturna con historias y cena campestre."
+                resumen: "Un recorrido de pura exploración y senderismo para los amantes de la aventura y el agua.",
+                detalles: [
+                    {
+                        titulo: "📍 Ubicación",
+                        texto: "Partiendo desde el sector Los Dos Ríos hacia el camino interno de Agua Blanca."
+                    },
+                    {
+                        titulo: "🎒 La Experiencia",
+                        texto: "Senderismo de pura aventura entre rocas, riachuelos y pozas cristalinas que se forman a lo largo del trayecto."
+                    },
+                    {
+                        titulo: "🌪️ El Gran Final: La Catarata del Viento",
+                        texto: "Una imponente y majestuosa caída de agua en lo más profundo de la montaña que corona esta emocionante travesía."
+                    }
                 ]
             }
         ];
 
-        // Referencias a elementos del DOM
-        const gridDestinos = document.getElementById('grid-destinos');
-        const modal = document.getElementById('modal-destino');
-        const btnCerrarModal = document.getElementById('btn-cerrar-modal');
-        const btnEntendido = document.getElementById('btn-entendido');
+        // Elementos del DOM
+        const grid = document.getElementById('destinosGrid');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const closeBtn = document.getElementById('closeBtn');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDetails = document.getElementById('modalDetails');
 
-        const modalImg = document.getElementById('modal-img');
-        const modalTitulo = document.getElementById('modal-titulo');
-        const modalMensaje = document.getElementById('modal-mensaje');
-        const modalActividades = document.getElementById('modal-actividades');
-
-        // Función para renderizar los 4 cuadritos/tarjetas
-        function renderizarTarjetas() {
-            gridDestinos.innerHTML = '';
-            destinosTuristicos.forEach(destino => {
-                const tarjetaHtml = `
-                    <div class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-slate-100 group transform hover:-translate-y-1">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="${destino.imagen}" alt="${destino.nombre}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/0f766e/ffffff?text=${encodeURIComponent(destino.nombre)}'">
-                            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-brand-700 shadow-sm">
-                                <i class="fa-solid fa-location-dot mr-1"></i> Destino
-                            </div>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between">
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-brand-600 transition-colors">
-                                    ${destino.nombre}
-                                </h3>
-                                <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                                    ${destino.resumen}
-                                </p>
-                            </div>
-                            <button onclick="abrirModal(${destino.id})" class="w-full bg-slate-900 hover:bg-brand-600 text-white font-semibold py-3 px-4 rounded-xl text-sm transition-colors flex items-center justify-center gap-2 shadow-sm group-hover:shadow-md">
-                                <span>Ver itinerario / guía</span>
-                                <i class="fa-solid fa-arrow-right text-xs"></i>
-                            </button>
-                        </div>
+        // Renderizar Tarjetas
+        function cargarDestinos() {
+            grid.innerHTML = destinosTuristicos.map(destino => `
+                <div class="card" onclick="abrirModal(${destino.id})">
+                    <div class="card-img-wrapper">
+                        <img src="${destino.imagen}" alt="${destino.nombre}" class="card-img">
+                        <span class="card-tag">${destino.tag}</span>
                     </div>
-                `;
-                gridDestinos.innerHTML += tarjetaHtml;
-            });
+                    <div class="card-content">
+                        <div>
+                            <h3 class="card-title">${destino.nombre}</h3>
+                            <p class="card-description">${destino.resumen}</p>
+                        </div>
+                        <button class="btn-card">
+                            <i class="fa-solid fa-compass"></i> Ver Guía Completa
+                        </button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // Abrir Modal con los datos del destino correspondiente
+        // Abrir Modal
         function abrirModal(id) {
             const destino = destinosTuristicos.find(item => item.id === id);
             if (!destino) return;
 
             modalImg.src = destino.imagen;
-            modalImg.onerror = () => {
-                modalImg.src = `https://placehold.co/800x400/0f766e/ffffff?text=${encodeURIComponent(destino.nombre)}`;
-            };
-            modalTitulo.textContent = destino.nombre;
-            modalMensaje.textContent = `"${destino.mensajeBienvenida}"`;
+            modalImg.alt = destino.nombre;
+            modalTitle.innerText = destino.nombre;
 
-            // Renderizar la lista de actividades
-            modalActividades.innerHTML = destino.actividades.map(act => `
-                <li class="flex items-start gap-2.5">
-                    <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
-                        <i class="fa-solid fa-check"></i>
-                    </span>
-                    <span>${act}</span>
-                </li>
+            modalDetails.innerHTML = destino.detalles.map(item => `
+                <div class="modal-info-block">
+                    <h4>${item.titulo}</h4>
+                    <p>${item.texto}</p>
+                </div>
             `).join('');
 
-            // Mostrar el modal
-            modal.classList.remove('hidden');
-            modal.classList.add('modal-active');
-            document.body.style.overflow = 'hidden'; // Evitar scroll del fondo
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         // Cerrar Modal
         function cerrarModal() {
-            modal.classList.add('hidden');
-            modal.classList.remove('modal-active');
-            document.body.style.overflow = ''; // Restaurar scroll
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
-        // Event listeners para cerrar modal
-        btnCerrarModal.addEventListener('click', cerrarModal);
-        btnEntendido.addEventListener('click', cerrarModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) cerrarModal();
+        // Eventos de Cierre
+        closeBtn.addEventListener('click', cerrarModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) cerrarModal();
         });
 
-        // Actualizar año del footer automáticamente
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Inicializar la página
-        window.onload = function() {
-            renderizarTarjetas();
-        };
+        // Inicializar
+        cargarDestinos();
     </script>
 </body>
 </html>
