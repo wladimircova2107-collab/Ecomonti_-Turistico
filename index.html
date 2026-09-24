@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MONTI TURÍSTICO - Explora lo mejor de Montes</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -33,7 +31,6 @@
             line-height: 1.6;
         }
 
-        /* Hero Section / Bienvenida */
         .hero {
             background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), 
                         url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
@@ -59,7 +56,6 @@
             font-weight: 300;
         }
 
-        /* Contenedor Principal */
         .container {
             max-width: 1200px;
             margin: 50px auto;
@@ -84,14 +80,12 @@
             border-radius: 2px;
         }
 
-        /* Grid de 4 Cuadritos */
         .destinos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 25px;
         }
 
-        /* Tarjeta de Destino */
         .card {
             background: var(--white);
             border-radius: 16px;
@@ -178,7 +172,6 @@
             background-color: var(--primary-hover);
         }
 
-        /* Modal / Ventana Flotante */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -279,7 +272,6 @@
             line-height: 1.5;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 25px 20px;
@@ -289,7 +281,6 @@
             font-size: 0.9rem;
         }
 
-        /* Responsivo */
         @media (max-width: 600px) {
             .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
@@ -299,22 +290,16 @@
 </head>
 <body>
 
-    <!-- Encabezado / Bienvenida -->
     <header class="hero">
         <h1>MONTI TURÍSTICO</h1>
         <p>Explora lo mejor de Montes: Tu guía definitiva para descubrir la magia, la cultura, los ríos y los senderos naturales de nuestro municipio.</p>
     </header>
 
-    <!-- Contenido Principal -->
     <main class="container">
         <h2 class="section-title">Destinos Turísticos Imperdibles</h2>
-        
-        <div class="destinos-grid" id="destinosGrid">
-            <!-- Las 4 tarjetas se autogeneran dinámicamente con JavaScript -->
-        </div>
+        <div class="destinos-grid" id="destinosGrid"></div>
     </main>
 
-    <!-- Modal / Ventana Emergente -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
             <button class="close-btn" id="closeBtn">&times;</button>
@@ -326,14 +311,11 @@
         </div>
     </div>
 
-    <!-- Pie de Página -->
     <footer>
         <p>&copy; 2026 MONTI TURÍSTICO - Municipio Montes. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Lógica de Interacción -->
     <script>
-        // Datos de los 4 Destinos Turísticos
         const destinosTuristicos = [
             {
                 id: 1,
@@ -425,7 +407,6 @@
             }
         ];
 
-        // Elementos del DOM
         const grid = document.getElementById('destinosGrid');
         const modalOverlay = document.getElementById('modalOverlay');
         const closeBtn = document.getElementById('closeBtn');
@@ -433,7 +414,6 @@
         const modalTitle = document.getElementById('modalTitle');
         const modalDetails = document.getElementById('modalDetails');
 
-        // Renderizar Tarjetas
         function cargarDestinos() {
             grid.innerHTML = destinosTuristicos.map(destino => `
                 <div class="card" onclick="abrirModal(${destino.id})">
@@ -454,7 +434,6 @@
             `).join('');
         }
 
-        // Abrir Modal
         function abrirModal(id) {
             const destino = destinosTuristicos.find(item => item.id === id);
             if (!destino) return;
@@ -474,19 +453,16 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // Cerrar Modal
         function cerrarModal() {
             modalOverlay.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // Eventos de Cierre
         closeBtn.addEventListener('click', cerrarModal);
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) cerrarModal();
         });
 
-        // Inicializar
         cargarDestinos();
     </script>
 </body>
