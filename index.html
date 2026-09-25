@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MONTI TURÍSTICO - Explora lo mejor de Montes</title>
+    <title>Eco Monti Turístico - Explora lo mejor de Montes</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
@@ -39,20 +39,46 @@
 
         /* Hero / Seccion de Bienvenida Principal */
         .hero {
-            min-height: 85vh;
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), 
+            min-height: 90vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
                         url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: var(--white);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
 
         .hero-container {
-            max-width: 800px;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Contenedor del Logo de Monti */
+        .logo-monti-container {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(94, 234, 212, 0.4);
+            border: 4px solid #5eead4;
+            margin-bottom: 25px;
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-monti-container:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-monti-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .hero-badge {
@@ -65,25 +91,27 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #5eead4;
         }
 
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 18px;
-            color: #5eead4;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
             line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 35px;
+            font-size: 1.15rem;
+            margin-bottom: 30px;
             font-weight: 300;
             color: #e2e8f0;
+            line-height: 1.7;
         }
 
         /* Boton Principal de Explorar */
@@ -338,8 +366,9 @@
         }
 
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
+            .logo-monti-container { width: 170px; height: 170px; }
             .btn-hero { padding: 14px 28px; font-size: 1rem; }
             .modal-body { padding: 18px; }
         }
@@ -347,12 +376,16 @@
 </head>
 <body>
 
-    <!-- Bienvenida Inicial con Botón Explorar -->
+    <!-- Bienvenida Inicial con Logo y Mensaje de Monti -->
     <header class="hero">
         <div class="hero-container">
-            <span class="hero-badge"><i class="fa-solid fa-map-location-dot"></i> Guía Turística Oficial</span>
-            <h1>MONTI TURÍSTICO</h1>
-            <p>Explora lo mejor de Montes: Tu guía definitiva para descubrir la magia, la cultura, los ríos y los senderos naturales de nuestro municipio.</p>
+            <div class="logo-monti-container">
+                <!-- Coloca la imagen de tu logo con el nombre logo.jpg en la carpeta del proyecto -->
+                <img src="logo.jpg" alt="Logo Monti Turístico" class="logo-monti-img">
+            </div>
+            <span class="hero-badge"><i class="fa-solid fa-leaf"></i> ¡Bienvenidos a Eco Monti Turístico!</span>
+            <h1>Hola, soy Monti</h1>
+            <p>Un chamo campesino que representa el alma entera del municipio Montes. Nací del esfuerzo de estudiantes universitarios para ponerle rostro a nuestra identidad: en mí se refleja la música, los bailes tradicionales, la sazón de nuestros platos típicos, el trabajo de la tierra y cada costumbre que nos llena de orgullo.<br><br><strong>Quédate aquí para que descubras los mejores rincones y vivas la verdadera esencia de nuestra tierra.</strong></p>
             <a href="#destinos" class="btn-hero">
                 Explorar Destinos <i class="fa-solid fa-arrow-down"></i>
             </a>
@@ -378,7 +411,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 MONTI TURÍSTICO - Municipio Montes. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Eco Monti Turístico - Municipio Montes. Todos los derechos reservados.</p>
     </footer>
 
     <script>
